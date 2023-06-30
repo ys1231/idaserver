@@ -1,0 +1,6 @@
+id=idaserver
+name=idaserver
+version=v0.1
+versionCode=1
+author=iyue
+description=Run android-server ->idserver -p 1234 on boot
