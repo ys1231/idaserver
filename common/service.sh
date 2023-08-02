@@ -15,8 +15,8 @@ done
 
 # ensure boot has actually completed
 sleep 5
-/bin/magisk resetprop ro.debuggable 1 
-stop && start
+# /bin/magisk resetprop ro.debuggable 1 
+# stop && start
 # restart on crash
 while true; do
     idserver -p1234

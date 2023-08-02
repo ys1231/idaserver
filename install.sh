@@ -25,7 +25,7 @@
 SKIPMOUNT=false
 
 # Set to true if you need to load system.prop
-PROPFILE=false
+PROPFILE=true
 
 # Set to true if you need post-fs-data script
 POSTFSDATA=false
@@ -59,7 +59,19 @@ on_install() {
   ui_print "- Extracting module files"
 
   F_TARGETDIR="$MODPATH/system/bin"
-  UNZIP="/data/adb/magisk/busybox unzip"
+  # Check if the KSU environment variable is set
+if [ "$KSU" = "true" ]; then
+    # Running in KernelSU
+    echo "Running in KernelSU environment."
+    UNZIP="/data/adb/ksu/bin/busybox unzip"
+    # Add your KernelSU-specific actions here 
+else
+    # Running in Magisk
+    echo "Running in Magisk environment."
+    UNZIP="/data/adb/magisk/busybox unzip"
+    # Add your Magisk-specific actions here
+fi
+  
 
   mkdir -p "$F_TARGETDIR"
   $UNZIP -qq -o "$ZIPFILE" "files/android_server-$F_ARCH" -j -d "$F_TARGETDIR"
