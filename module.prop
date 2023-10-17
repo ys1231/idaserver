@@ -1,6 +1,6 @@
 id=idserver
 name=idserver
-version=v0.2
-versionCode=2
+version=v0.3
+versionCode=3
 author=iyue
-description=Run android-server ->idserver -p 1234 on boot; support kernelsu or magisk
+description=Run android-server ->idserver -p 1234 on boot; support kernelsu or magisk; enable ro.debuggable 1

@@ -7,3 +7,4 @@
 MODDIR=${0%/*}
 
 # This script will be executed in post-fs-data mode
+resetprop ro.debuggable 1 
