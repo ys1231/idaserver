@@ -33,7 +33,6 @@ POSTFSDATA=false
 # Set to true if you need late_start service script
 LATESTARTSERVICE=true
 
-
 # Set what you want to display when installing your module
 
 print_modname() {
@@ -48,30 +47,37 @@ print_modname() {
 
 on_install() {
   case $ARCH in
-    arm64) F_ARCH=$ARCH;;
-    arm)   F_ARCH=$ARCH;;
-    x64)   F_ARCH=x86_64;;
-    x86)   F_ARCH=$ARCH;;
-    *)     ui_print "Unsupported architecture: $ARCH"; abort;;
+  arm64) F_ARCH=$ARCH ;;
+  arm) F_ARCH=$ARCH ;;
+  x64) F_ARCH=x86_64 ;;
+  x86) F_ARCH=$ARCH ;;
+  *)
+    ui_print "Unsupported architecture: $ARCH"
+    abort
+    ;;
   esac
 
   ui_print "- Detected architecture: $F_ARCH"
   ui_print "- Extracting module files"
 
   F_TARGETDIR="$MODPATH/system/bin"
-  # Check if the KSU environment variable is set
-if [ "$KSU" = "true" ]; then
-    # Running in KernelSU
-    echo "Running in KernelSU environment."
-    UNZIP="/data/adb/ksu/bin/busybox unzip"
-    # Add your KernelSU-specific actions here 
-else
-    # Running in Magisk
-    echo "Running in Magisk environment."
-    UNZIP="/data/adb/magisk/busybox unzip"
-    # Add your Magisk-specific actions here
-fi
-  
+  MAGISK_BIN="/data/adb/magisk/busybox"
+  KERNELSU_BIN="/data/adb/ksu/bin/busybox"
+  APATCH_BIN="/data/adb/ap/bin/busybox"
+
+  if [ -f "$MAGISK_BIN" ]; then
+    echo "- ${MAGISK_BIN} found"
+    UNZIP="${MAGISK_BIN} unzip"
+  elif [ -f "$KERNELSU_BIN" ]; then
+    echo "- ${KERNELSU_BIN} found"
+    UNZIP="${KERNELSU_BIN} unzip"
+  elif [ -f "$APATCH_BIN" ]; then
+    echo "- ${APATCH_BIN} found"
+    UNZIP="${APATCH_BIN} unzip"
+  else
+    echo "- No busybox found,Use system unzip"
+    UNZIP="/system/bin/unzip"
+  fi
 
   mkdir -p "$F_TARGETDIR"
   $UNZIP -qq -o "$ZIPFILE" "files/android_server-$F_ARCH" -j -d "$F_TARGETDIR"

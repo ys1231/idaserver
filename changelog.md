@@ -1,0 +1,1 @@
+- 兼容magiskv20.4+/kernelsu/APatch

@@ -1,6 +1,7 @@
 id=idserver
 name=idserver
-version=v0.3
-versionCode=3
+version=v0.4
+versionCode=4
 author=iyue
-description=Run android-server ->idserver -p 1234 on boot; support kernelsu or magisk; enable ro.debuggable 1
+description=Run android-server ->idserver -p 1234 on boot; support kernelsu or magisk or apatch; enable ro.debuggable 1; 2024/02/01
+updateJson=https://ys1231.cn:82/modules/idserver/update.json
