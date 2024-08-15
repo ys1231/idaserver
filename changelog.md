@@ -1,1 +1,2 @@
 - 兼容magiskv20.4+/kernelsu/APatch
+- 更新版本为idapro9.0server
