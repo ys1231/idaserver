@@ -1,2 +1,5 @@
+- feat(server): :sparkles: 更新为 idapro9.0 Version 9.0.240925
+- 
+---
 - 兼容magiskv20.4+/kernelsu/APatch
 - 更新版本为idapro9.0server
