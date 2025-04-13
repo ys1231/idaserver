@@ -1,0 +1,4 @@
+files/android_server-x86_64 filter=lfs diff=lfs merge=lfs -text
+files/android_server-arm filter=lfs diff=lfs merge=lfs -text
+files/android_server-arm64 filter=lfs diff=lfs merge=lfs -text
+files/android_server-x86 filter=lfs diff=lfs merge=lfs -text
